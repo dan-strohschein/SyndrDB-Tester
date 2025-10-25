@@ -1,0 +1,84 @@
+{
+    "tests": [
+        {
+            "category": "Performance_Bulk_Add_Bundles",
+            "description": "Add 1,000 BUNDLES in bulk",
+            "runAllCommand": "run_perf_performance_bulk_add_bundles"
+        },
+        {
+            "category": "Performance_Bulk_Add_Bundles",
+            "description": "Add 5,000 BUNDLES in bulk",
+            "runAllCommand": "run_perf_performance_bulk_add_5000_bundles"
+        },
+        {
+            "category": "Performance_Bulk_Add_Bundles",
+            "description": "Add 10,000 BUNDLES in bulk",
+            "runAllCommand": "run_perf_performance_bulk_add_10000_bundles"
+        },
+        {
+            "category": "Performance_Bulk_Add_Bundles",
+            "description": "Add 50,000 BUNDLES in bulk",
+            "runAllCommand": "run_perf_performance_bulk_add_50000_bundles"
+        },
+        {
+            "category": "Performance_Bulk_Add_Bundles",
+            "description": "Add 100,000 BUNDLES in bulk",
+            "runAllCommand": "run_perf_performance_bulk_add_100000_bundles"
+        },
+        {
+            "category": "Performance_Bulk_Add_Bundles",
+            "description": "Add 500,000 BUNDLES in bulk",
+            "runAllCommand": "run_perf_performance_bulk_add_500000_bundles"
+        },
+        {
+            "category": "Performance_Bulk_Add_Bundles",
+            "description": "Add 1,000,000 BUNDLES in bulk",
+            "runAllCommand": "run_perf_performance_bulk_add_1000000_bundles"
+        },
+        {
+            "category": "Performance_Bulk_Add_Bundles",
+            "description": "Add 1000 BUNDLES with 25 fields in bulk",
+            "runAllCommand": "run_perf_performance_bulk_add_1000_bundles_with_25_fields"
+        },
+        {
+            "category": "Performance_Bulk_Add_Bundles",
+            "description": "Add 1000 BUNDLES with 50 fields in bulk",
+            "runAllCommand": "run_perf_performance_bulk_add_1000_bundles_with_50_fields"
+        },
+        {
+            "category": "Performance_Bulk_Add_Bundles",
+            "description": "Add 1000 BUNDLES with 100 fields in bulk",
+            "runAllCommand": "run_perf_performance_bulk_add_1000_bundles_with_100_fields"
+        },
+        {
+            "category": "Performance_Bulk_Add_Bundles",
+            "description": "Add 10000 BUNDLES with 25 fields in bulk",
+            "runAllCommand": "run_perf_performance_bulk_add_10000_bundles_with_25_fields"
+        },
+        {
+            "category": "Performance_Bulk_Add_Bundles",
+            "description": "Add 10000 BUNDLES with 50 fields in bulk",
+            "runAllCommand": "run_perf_performance_bulk_add_10000_bundles_with_50_fields"
+        },
+        {
+            "category": "Performance_Bulk_Add_Bundles",
+            "description": "Add 10000 BUNDLES with 100 fields in bulk",
+            "runAllCommand": "run_perf_performance_bulk_add_10000_bundles_with_100_fields"
+        },
+        {
+            "category": "Performance_Bulk_Add_Bundles",
+            "description": "Add 100000 BUNDLES with 25 fields in bulk",
+            "runAllCommand": "run_perf_performance_bulk_add_100000_bundles_with_25_fields"
+        },
+        {
+            "category": "Performance_Bulk_Add_Bundles",
+            "description": "Add 100000 BUNDLES with 50 fields in bulk",
+            "runAllCommand": "run_perf_performance_bulk_add_100000_bundles_with_50_fields"
+        },
+        {
+            "category": "Performance_Bulk_Add_Bundles",
+            "description": "Add 100000 BUNDLES with 100 fields in bulk",
+            "runAllCommand": "run_perf_performance_bulk_add_100000_bundles_with_100_fields"
+        }
+    ]
+}

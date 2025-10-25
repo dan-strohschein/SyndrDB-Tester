@@ -1,0 +1,85 @@
+{
+    "tests": [
+        {
+            "category": "E2E_Add_Documents",
+            "description": "Simple ADD queries",
+            "runAllCommand": "run_e2e_simple_adds"
+        },
+        {
+            "category": "E2E_Add_Documents",
+            "description": "Bulk ADD queries",
+            "runAllCommand": "run_e2e_bulk_adds"
+        },
+        {
+            "category": "E2E_Add_Documents",
+            "description": "ADD queries with invalid data",
+            "runAllCommand": "run_e2e_adds_with_invalid_data"
+        },
+        {
+            "category": "E2E_Add_Documents",
+            "description": "ADD queries with duplicate IDs",
+            "runAllCommand": "run_e2e_adds_with_duplicate_ids"
+        },
+        {
+            "category": "E2E_Add_Documents",
+            "description": "ADD queries with missing required fields",
+            "runAllCommand": "run_e2e_adds_with_missing_required_fields"
+        },
+        {
+            "category": "E2E_Add_Documents",
+            "description": "ADD queries with NULL values",
+            "runAllCommand": "run_e2e_adds_with_null_values"
+        },
+        {
+            "category": "E2E_Add_Documents",
+            "description": "ADD queries with bad fields",
+            "runAllCommand": "run_e2e_adds_with_bad_fields"
+        },
+        {
+            "category": "E2E_Add_Documents",
+            "description": "ADD queries with bad field types",
+            "runAllCommand": "run_e2e_adds_with_bad_field_types"
+        },
+        {
+            "category": "E2E_Add_Documents",
+            "description": "ADD queries with extremely large documents",
+            "runAllCommand": "run_e2e_adds_with_extremely_large_documents"
+        },
+        {
+            "category": "E2E_Add_Documents",
+            "description": "ADD queries with special characters in text fields",
+            "runAllCommand": "run_e2e_adds_with_special_characters_in_text_fields"
+        },
+        {
+            "category": "E2E_Add_Documents",
+            "description": "ADD queries with that violate is Unique",
+            "runAllCommand": "run_e2e_adds_with_that_violate_is_unique"
+        },
+        {
+            "category": "E2E_Add_Documents",
+            "description": "ADD queries with string field that has default value",
+            "runAllCommand": "run_e2e_adds_with_string_field_that_has_default_value"
+        },
+        {
+            "category": "E2E_Add_Documents",
+            "description": "ADD queries with int field that has default value",
+            "runAllCommand": "run_e2e_adds_with_int_field_that_has_default_value"
+        },
+        {
+            "category": "E2E_Add_Documents",
+            "description": "ADD queries with bool field that has default value",
+            "runAllCommand": "run_e2e_adds_with_bool_field_that_has_default_value"
+        },
+        {
+            "category": "E2E_Add_Documents",
+            "description": "ADD queries with float field that has default value",
+            "runAllCommand": "run_e2e_adds_with_float_field_that_has_default_value"
+        },
+        {
+            "category": "E2E_Add_Documents",
+            "description": "ADD queries with date field that has default value",
+            "runAllCommand": "run_e2e_adds_with_date_field_that_has_default_value"
+        }
+
+    ]
+}

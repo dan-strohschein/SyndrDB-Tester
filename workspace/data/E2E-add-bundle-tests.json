@@ -1,0 +1,115 @@
+{
+    "tests": [
+        {
+            "category": "E2E_Add_Bundles",
+            "description": "Simple ADD BUNDLE query",
+            "runAllCommand": "run_e2e_simple_add_bundles"
+        },
+         {
+            "category": "E2E_Add_Bundles",
+            "description": "Simple ADD BUNDLE with invalid bundle name",
+            "runAllCommand": "run_e2e_simple_add_bundles_with_invalid_bundle_name"
+        },
+        {
+            "category": "E2E_Add_Bundles",
+            "description": "Simple ADD BUNDLE query with string field",
+            "runAllCommand": "run_e2e_simple_add_bundle_with_string_field"
+        },
+        {
+            "category": "E2E_Add_Bundles",
+            "description": "Simple ADD BUNDLE with int field",
+            "runAllCommand": "run_e2e_simple_add_bundle_with_int_field"
+        },
+        {
+            "category": "E2E_Add_Bundles",
+            "description": "Simple ADD BUNDLE with BOOL field ",
+            "runAllCommand": "run_e2e_simple_add_bundle_with_bool_field"
+        },
+        {
+            "category": "E2E_Add_Bundles",
+            "description": "Simple ADD BUNDLE with float field",
+            "runAllCommand": "run_e2e_simple_add_bundle_with_float_field"
+        },
+        {
+            "category": "E2E_Add_Bundles",
+            "description": "Simple ADD BUNDLE with date field",
+            "runAllCommand": "run_e2e_simple_add_bundle_with_date_field"
+        },  
+         {
+            "category": "E2E_Add_Bundles",
+            "description": "Simple ADD BUNDLE query with REQUIRED string field",
+            "runAllCommand": "run_e2e_simple_add_bundle_with_required_string_field"
+        },
+        {
+            "category": "E2E_Add_Bundles",
+            "description": "Simple ADD BUNDLE with REQUIRED int field",
+            "runAllCommand": "run_e2e_simple_add_bundle_with_required_int_field"
+        },
+        {
+            "category": "E2E_Add_Bundles",
+            "description": "Simple ADD BUNDLE with REQUIRED int field",
+            "runAllCommand": "run_e2e_simple_add_bundle_with_required_bool_field"
+        },
+        {
+            "category": "E2E_Add_Bundles",
+            "description": "Simple ADD BUNDLE with REQUIRED float field",
+            "runAllCommand": "run_e2e_simple_add_bundle_with_required_float_field"
+        },
+        {
+            "category": "E2E_Add_Bundles",
+            "description": "Simple ADD BUNDLE with REQUIRED date field",
+            "runAllCommand": "run_e2e_simple_add_bundle_with_required_date_field"
+        },  
+         {
+            "category": "E2E_Add_Bundles",
+            "description": "Simple ADD BUNDLE query with Unique string field",
+            "runAllCommand": "run_e2e_simple_add_bundle_with_unique_string_field"
+        },
+        {
+            "category": "E2E_Add_Bundles",
+            "description": "Simple ADD BUNDLE query with Unique int field",
+            "runAllCommand": "run_e2e_simple_add_bundle_with_unique_int_field"
+        },
+        {
+            "category": "E2E_Add_Bundles",
+            "description": "Simple ADD BUNDLE with unique bool field",
+            "runAllCommand": "run_e2e_simple_add_bundle_with_unique_bool_field"
+        },
+        {
+            "category": "E2E_Add_Bundles",
+            "description": "Simple ADD BUNDLE with unique float field",
+            "runAllCommand": "run_e2e_simple_add_bundle_with_unique_float_field"
+        },
+        {
+            "category": "E2E_Add_Bundles",
+            "description": "Simple ADD BUNDLE with unique date field",
+            "runAllCommand": "run_e2e_simple_add_bundle_with_unique_date_field"
+        },    
+
+        {
+            "category": "E2E_Add_Bundles",
+            "description": "Bulk ADD BUNDLE queries",
+            "runAllCommand": "run_e2e_bulk_add_bundles"
+        },
+        {
+            "category": "E2E_Add_Bundles",
+            "description": "ADD BUNDLE queries with invalid data",
+            "runAllCommand": "run_e2e_add_bundles_with_invalid_data"
+        },
+        {
+            "category": "E2E_Add_Bundles",
+            "description": "ADD BUNDLE queries with duplicate IDs",
+            "runAllCommand": "run_e2e_add_bundles_with_duplicate_ids"
+        },
+        {
+            "category": "E2E_Add_Bundles",
+            "description": "ADD BUNDLE queries with missing required fields",
+            "runAllCommand": "run_e2e_add_bundles_with_missing_required_fields"
+        },
+        {
+            "category": "E2E_Add_Bundles",
+            "description": "ADD BUNDLE queries with NULL values",
+            "runAllCommand": "run_e2e_add_bundles_with_null_values"
+        }
+    ]
+}

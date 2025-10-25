@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SyndrDB Tester</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- FontAwesome CSS -->
+    <link href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    
+    <!-- Custom styles -->
+    <link href="styles/main.css" rel="stylesheet">
+    
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            height: 100vh;
+        }
+        
+        main-navigation {
+            display: block;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        
+        .main-content-row {
+            height: calc(100vh - 60px);
+            margin-top: 60px;
+        }
+        
+        .main-content-col {
+            height: 100%;
+        }
+    </style>
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:;">
+</head>
+<body class="bg-dark text-light">
+    
+    <div class="">
+        <div class="row">
+            <div class="col">
+                <!-- Navigation Bar -->
+                <main-navigation></main-navigation>
+            </div>
+        </div>
+         <div class="row gx-1 main-content-row">
+            <div class="col-4 border-end main-content-col">
+                <!-- Sidebar -->
+                <side-bar></side-bar>
+            </div>
+            <div class="col-8 main-content-col">
+                <!-- Main area  -->
+                <!-- Main container with Bootstrap classes -->
+                <div class="container-fluid text-center h-100 d-flex align-items-center justify-content-center">
+                    <!-- Welcome component will be inserted here -->
+                    <welcome-component style="width:100%; height:100%;">
+                        <!-- Fallback content while component loads -->
+                        
+                    </welcome-component>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+   
+
+    <!-- Bootstrap JS (required for dropdowns) -->
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Renderer script -->
+    <script type="module" src="../dist/renderer.js"></script>
+</body>
+</html>

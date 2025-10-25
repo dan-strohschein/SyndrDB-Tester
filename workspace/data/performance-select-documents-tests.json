@@ -1,0 +1,157 @@
+{
+    "tests": [
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Simple Select 1,000 DOCUMENTS in bulk",
+            "runAllCommand":"run_perf_performance_simple_select_documents"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select 1,000 DOCUMENTS with single filters in bulk",
+            "runAllCommand":"run_perf_performance_select_documents_with_single_filters"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select 1,000 DOCUMENTS with multiple filters in bulk",
+            "runAllCommand":"run_perf_performance_select_documents_with_multiple_filters"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select 1,000 DOCUMENTS with joins in bulk",
+            "runAllCommand":"run_perf_performance_select_documents_with_joins"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select 1,000 DOCUMENTS with joins and single filters in bulk",
+            "runAllCommand":"run_perf_performance_select_documents_with_joins_and_single_filters"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select 1,000 DOCUMENTS with joins and multiple filters in bulk",
+            "runAllCommand":"run_perf_performance_select_documents_with_joins_and_multiple_filters"
+        },
+
+
+
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Simple Select 100,000 DOCUMENTS in bulk",
+            "runAllCommand":"run_perf_performance_simple_select_100000_documents"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select 100,000 DOCUMENTS with single filters in bulk",
+            "runAllCommand":"run_perf_performance_select_100000_documents_with_single_filters"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select 100,000 DOCUMENTS with multiple filters in bulk",
+            "runAllCommand":"run_perf_performance_select_100000_documents_with_multiple_filters"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select 100,000 DOCUMENTS with joins in bulk",
+            "runAllCommand":"run_perf_performance_select_100000_documents_with_joins"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select 100,000 DOCUMENTS with joins and single filters in bulk",
+            "runAllCommand":"run_perf_performance_select_100000_documents_with_joins_and_single_filters"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select 100,000 DOCUMENTS with joins and multiple filters in bulk",
+            "runAllCommand":"run_perf_performance_select_100000_documents_with_joins_and_multiple_filters"
+        },
+
+
+
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Simple Select 100,000 DOCUMENTS with 25 Fields in bulk",
+            "runAllCommand":"run_perf_performance_simple_select_100000_documents_with_25_fields"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select 100,000 DOCUMENTS with single  25 Fields  filters in bulk",
+            "runAllCommand":"run_perf_performance_select_100000_documents_with_single_filters_with_25_fields"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select 100,000 DOCUMENTS with multiple  25 Fields  filters in bulk",
+            "runAllCommand":"run_perf_performance_select_100000_documents_with_multiple_filters_with_25_fields"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select 100,000 DOCUMENTS with  25 Fields  with joins in bulk",
+            "runAllCommand":"run_perf_performance_select_100000_documents_with_joins_with_25_fields"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select 100,000 DOCUMENTS with  25 Fields with joins and single filters in bulk",
+            "runAllCommand":"run_perf_performance_select_100000_documents_with_joins_and_single_filters_with_25_fields"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select 100,000 DOCUMENTS with  25 Fields with joins and multiple filters in bulk",
+            "runAllCommand":"run_perf_performance_select_100000_documents_with_joins_and_multiple_filters_with_25_fields"
+        },
+
+{
+            "category":"Performance_Select_Documents",
+            "description":"Simple Select 100,000 DOCUMENTS with 50 Fields in bulk",
+            "runAllCommand":"run_perf_performance_simple_select_100000_documents_with_50_fields"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select 100,000 DOCUMENTS with single  50 Fields  filters in bulk",
+            "runAllCommand":"run_perf_performance_select_100000_documents_with_single_filters_with_50_fields"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select 100,000 DOCUMENTS with multiple  50 Fields  filters in bulk",
+            "runAllCommand":"run_perf_performance_select_100000_documents_with_multiple_filters_with_50_fields"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select 100,000 DOCUMENTS with  50 Fields  with joins in bulk",
+            "runAllCommand":"run_perf_performance_select_100000_documents_with_joins_with_50_fields"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select 100,000 DOCUMENTS with  50 Fields with joins and single filters in bulk",
+            "runAllCommand":"run_perf_performance_select_100000_documents_with_joins_and_single_filters_with_50_fields"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select 100,000 DOCUMENTS with  50 Fields with joins and multiple filters in bulk",
+            "runAllCommand":"run_perf_performance_select_100000_documents_with_joins_and_multiple_filters_with_50_fields"
+        },
+
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select TOP N DOCUMENTS in bulk",
+            "runAllCommand":"run_perf_performance_select_top_n_documents"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select TOP N DOCUMENTS with joins in bulk",
+            "runAllCommand":"run_perf_performance_select_top_n_documents_with_joins"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select TOP N DOCUMENTS with joins and single filters in bulk",
+            "runAllCommand":"run_perf_performance_select_top_n_documents_with_joins_and_single_filters"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select TOP N DOCUMENTS with joins and multiple filters in bulk",
+            "runAllCommand":"run_perf_performance_select_top_n_documents_with_joins_and_multiple_filters"
+        },
+        {
+            "category":"Performance_Select_Documents",
+            "description":"Select COUNT(*) DOCUMENTS in bulk",
+            "runAllCommand":"run_perf_performance_select_count_documents"
+        }
+    ]
+}

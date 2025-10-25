@@ -1,0 +1,339 @@
+{
+    "tests": [
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Simple Update BUNDLE query",
+            "runAllCommand": "run_e2e_simple_Update_bundles"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE with new 1ToMany relationship",
+            "runAllCommand": "run_e2e_simple_Update_bundles_with_new_1ToMany_relationship"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE with new 0ToMany relationship",
+            "runAllCommand": "run_e2e_simple_Update_bundles_with_new_0ToMany_relationship"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE with new 1ToOne relationship",
+            "runAllCommand": "run_e2e_simple_Update_bundles_with_new_1ToOne_relationship"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE with new ManyToMany relationship",
+            "runAllCommand": "run_e2e_simple_Update_bundles_with_new_ManyToMany_relationship"
+        },
+        
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Simple Update BUNDLE with invalid bundle name",
+            "runAllCommand": "run_e2e_simple_Update_bundles_with_invalid_bundle_name"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Simple Update BUNDLE query with string field",
+            "runAllCommand": "run_e2e_simple_Update_bundle_with_string_field"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Simple Update BUNDLE with int field",
+            "runAllCommand": "run_e2e_simple_Update_bundle_with_int_field"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Simple Update BUNDLE with BOOL field ",
+            "runAllCommand": "run_e2e_simple_Update_bundle_with_bool_field"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Simple Update BUNDLE with float field",
+            "runAllCommand": "run_e2e_simple_Update_bundle_with_float_field"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Simple Update BUNDLE with date field",
+            "runAllCommand": "run_e2e_simple_Update_bundle_with_date_field"
+        },  
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Simple Update BUNDLE query with REQUIRED string field",
+            "runAllCommand": "run_e2e_simple_Update_bundle_with_required_string_field"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Simple Update BUNDLE with REQUIRED int field",
+            "runAllCommand": "run_e2e_simple_Update_bundle_with_required_int_field"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Simple Update BUNDLE with REQUIRED int field",
+            "runAllCommand": "run_e2e_simple_Update_bundle_with_required_bool_field"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Simple Update BUNDLE with REQUIRED float field",
+            "runAllCommand": "run_e2e_simple_Update_bundle_with_required_float_field"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Simple Update BUNDLE with REQUIRED date field",
+            "runAllCommand": "run_e2e_simple_Update_bundle_with_required_date_field"
+        },  
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Simple Update BUNDLE query with Unique string field",
+            "runAllCommand": "run_e2e_simple_Update_bundle_with_unique_string_field"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Simple Update BUNDLE query with Unique int field",
+            "runAllCommand": "run_e2e_simple_Update_bundle_with_unique_int_field"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Simple Update BUNDLE with unique bool field",
+            "runAllCommand": "run_e2e_simple_Update_bundle_with_unique_bool_field"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Simple Update BUNDLE with unique float field",
+            "runAllCommand": "run_e2e_simple_Update_bundle_with_unique_float_field"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Simple Update BUNDLE with unique date field",
+            "runAllCommand": "run_e2e_simple_Update_bundle_with_unique_date_field"
+        },    
+
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Bulk Update BUNDLE queries",
+            "runAllCommand": "run_e2e_bulk_Update_bundles"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE queries with invalid data",
+            "runAllCommand": "run_e2e_Update_bundles_with_invalid_data"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE queries with duplicate IDs",
+            "runAllCommand": "run_e2e_Update_bundles_with_duplicate_ids"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE queries with missing required fields",
+            "runAllCommand": "run_e2e_Update_bundles_with_missing_required_fields"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE queries with NULL values",
+            "runAllCommand": "run_e2e_Update_bundles_with_null_values"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Add valid field with valid field name",
+            "runAllCommand": "run_e2e_Update_bundles_add_valid_field_with_valid_field_name"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Add valid field with invalid field name",
+            "runAllCommand": "run_e2e_Update_bundles_add_valid_field_with_invalid_field_name"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Update field with valid field name",
+            "runAllCommand": "run_e2e_Update_bundles_update_field_with_valid_field_name"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Update field with invalid field name",
+            "runAllCommand": "run_e2e_Update_bundles_update_field_with_invalid_field_name"
+        },
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Add valid field string type",
+            "runAllCommand": "run_e2e_Update_bundles_add_valid_field_string_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Add valid field int type",
+            "runAllCommand": "run_e2e_Update_bundles_add_valid_field_int_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Add valid field bool type",
+            "runAllCommand": "run_e2e_Update_bundles_add_valid_field_bool_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Add valid field date type",
+            "runAllCommand": "run_e2e_Update_bundles_add_valid_field_date_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Add valid field float type",
+            "runAllCommand": "run_e2e_Update_bundles_add_valid_field_float_type"
+        },
+
+
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Add REQUIRED valid field string type",
+            "runAllCommand": "run_e2e_Update_bundles_add_required_valid_field_string_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Add REQUIRED valid field int type",
+            "runAllCommand": "run_e2e_Update_bundles_add_required_valid_field_int_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Add REQUIRED valid field bool type",
+            "runAllCommand": "run_e2e_Update_bundles_add_required_valid_field_bool_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Add REQUIRED valid field date type",
+            "runAllCommand": "run_e2e_Update_bundles_add_required_valid_field_date_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Add REQUIRED valid field float type",
+            "runAllCommand": "run_e2e_Update_bundles_add_required_valid_field_float_type"
+        },
+
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Add Unique valid field string type",
+            "runAllCommand": "run_e2e_Update_bundles_add_unique_valid_field_string_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Add Unique valid field int type",
+            "runAllCommand": "run_e2e_Update_bundles_add_unique_valid_field_int_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Add Unique valid field bool type",
+            "runAllCommand": "run_e2e_Update_bundles_add_unique_valid_field_bool_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Add Unique valid field date type",
+            "runAllCommand": "run_e2e_Update_bundles_add_unique_valid_field_date_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Add Unique valid field float type",
+            "runAllCommand": "run_e2e_Update_bundles_add_unique_valid_field_float_type"
+        },
+
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Add default value valid field string type",
+            "runAllCommand": "run_e2e_Update_bundles_add_default_value_valid_field_string_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Add default value valid field int type",
+            "runAllCommand": "run_e2e_Update_bundles_add_default_value_valid_field_int_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Add default value valid field bool type",
+            "runAllCommand": "run_e2e_Update_bundles_add_default_value_valid_field_bool_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Add default value valid field date type",
+            "runAllCommand": "run_e2e_Update_bundles_add_default_value_valid_field_date_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Add default value valid field float type",
+            "runAllCommand": "run_e2e_Update_bundles_add_default_value_valid_field_float_type"
+        },
+
+
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Update REQUIRED valid field string type",
+            "runAllCommand": "run_e2e_Update_bundles_update_required_valid_field_string_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Update REQUIRED valid field int type",
+            "runAllCommand": "run_e2e_Update_bundles_update_required_valid_field_int_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Update REQUIRED valid field bool type",
+            "runAllCommand": "run_e2e_Update_bundles_update_required_valid_field_bool_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Update REQUIRED valid field date type",
+            "runAllCommand": "run_e2e_Update_bundles_update_required_valid_field_date_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Update REQUIRED valid field float type",
+            "runAllCommand": "run_e2e_Update_bundles_update_required_valid_field_float_type"
+        },
+
+        {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE update Unique valid field string type",
+            "runAllCommand": "run_e2e_Update_bundles_update_unique_valid_field_string_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Update Unique valid field int type",
+            "runAllCommand": "run_e2e_Update_bundles_update_unique_valid_field_int_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Update Unique valid field bool type",
+            "runAllCommand": "run_e2e_Update_bundles_update_unique_valid_field_bool_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Update Unique valid field date type",
+            "runAllCommand": "run_e2e_Update_bundles_update_unique_valid_field_date_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Update Unique valid field float type",
+            "runAllCommand": "run_e2e_Update_bundles_update_unique_valid_field_float_type"
+        },
+
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE update default value valid field string type",
+            "runAllCommand": "run_e2e_Update_bundles_update_default_value_valid_field_string_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Update default value valid field int type",
+            "runAllCommand": "run_e2e_Update_bundles_update_default_value_valid_field_int_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Update default value valid field bool type",
+            "runAllCommand": "run_e2e_Update_bundles_update_default_value_valid_field_bool_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Update default value valid field date type",
+            "runAllCommand": "run_e2e_Update_bundles_update_default_value_valid_field_date_type"
+        },
+         {
+            "category": "E2E_Update_Bundles",
+            "description": "Update BUNDLE Update default value valid field float type",
+            "runAllCommand": "run_e2e_Update_bundles_update_default_value_valid_field_float_type"
+        }
+    ]
+}

@@ -1,0 +1,69 @@
+{
+    "tests": [
+        {
+            "category": "E2E_Delete_Documents",
+            "description": "Simple DELETE queries",
+            "runAllCommand": "run_e2e_simple_deletes"
+        },
+        {
+            "category": "E2E_Delete_Documents",
+            "description": "Bulk DELETE queries",
+            "runAllCommand": "run_e2e_bulk_deletes"
+        },     
+        {
+            "category": "E2E_Delete_Documents",
+            "description": "DELETE queries with filtered NULL values",
+            "runAllCommand": "run_e2e_deletes_with_filtered_null_values"
+        },       
+        {
+            "category": "E2E_Delete_Documents",
+            "description": "DELETE queries with bad field types",
+            "runAllCommand": "run_e2e_deletes_with_bad_field_types"
+        },
+        {
+            "category": "E2E_Delete_Documents",
+            "description": "DELETE queries with joins",
+            "runAllCommand": "run_e2e_deletes_with_joins"
+        },
+        {
+            "category": "E2E_Delete_Documents",
+            "description": "DELETE queries with single filter",
+            "runAllCommand": "run_e2e_deletes_with_single_filter"
+        },
+        {
+            "category": "E2E_Delete_Documents",
+            "description": "DELETE queries with multiple filters",
+            "runAllCommand": "run_e2e_deletes_with_multiple_filters"
+        },
+        {
+            "category": "E2E_Delete_Documents",
+            "description": "DELETE queries with joins and single filter",
+            "runAllCommand": "run_e2e_deletes_with_joins_and_single_filter"
+        },
+        {
+            "category": "E2E_Delete_Documents",
+            "description": "DELETE queries with joins and multiple filters",
+            "runAllCommand": "run_e2e_deletes_with_joins_and_multiple_filters"
+        },
+        {
+            "category": "E2E_Delete_Documents",
+            "description": "DELETE queries with CONTAINS filter",
+            "runAllCommand": "run_e2e_deletes_with_contains_filter"
+        },
+        {
+            "category": "E2E_Delete_Documents",
+            "description": "DELETE queries with extremely large documents",
+            "runAllCommand": "run_e2e_deletes_with_extremely_large_documents"
+        },
+        {
+            "category": "E2E_Delete_Documents",
+            "description": "DELETE queries that are child records in joins",
+            "runAllCommand": "run_e2e_deletes_that_are_child_records_in_joins"
+        },
+        {
+            "category": "E2E_Delete_Documents",
+            "description": "DELETE queries that are parent records in joins",
+            "runAllCommand": "run_e2e_deletes_that_are_parent_records_in_joins"
+        }
+    ]
+}

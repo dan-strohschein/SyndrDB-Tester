@@ -1,0 +1,158 @@
+{
+    "tests": [
+        {
+            "category": "E2E_Select",
+            "description": "Simple SELECT queries",
+            "runAllCommand": "run_e2e_simple_selects"
+        },
+        {
+            "category": "E2E_Select",
+            "description": "Simple SELECT queries with single filters",
+            "runAllCommand": "run_e2e_simple_selects_with_single_filters"
+        },
+        {
+            "category": "E2E_Select",
+            "description": "Simple SELECT queries with multiple filters",
+            "runAllCommand": "run_e2e_simple_selects_with_multiple_filters"
+        },
+        {
+            "category": "E2E_Select",
+            "description": "Simple Selects with Joins",
+            "runAllCommand": "run_e2e_simple_selects_with_joins"
+        },
+        {
+            "category": "E2E_Select",
+            "description": "Selects with joins and single filters",
+            "runAllCommand": "run_e2e_selects_with_joins_and_single_filters"
+        },
+        {
+            "category": "E2E_Select",
+            "description": "Selects with joins and multiple filters",
+            "runAllCommand": "run_e2e_selects_with_joins_and_multiple_filters"
+        } ,
+        {
+            "category": "E2E_Select",
+            "description": "Select TOP N queries",
+            "runAllCommand": "run_e2e_select_top_n_queries"
+        },
+        {
+            "category": "E2E_Select",
+            "description": "Selects TOP N with joins ",
+            "runAllCommand": "run_e2e_selects_top_n_with_joins"
+        }
+        ,
+        {
+            "category": "E2E_Select",
+            "description": "Selects TOP N with joins and single filters",
+            "runAllCommand": "run_e2e_selects_top_n_with_joins_and_single_filters"
+        }
+        ,
+        {
+            "category": "E2E_Select",
+            "description": "Selects TOP N with joins and multiple filters",
+            "runAllCommand": "run_e2e_selects_top_n_with_joins_and_multiple_filters"
+        }
+        ,
+        {
+            "category": "E2E_Select",
+            "description": "Selects COUNT(*) ",
+            "runAllCommand": "run_e2e_selects_count"
+        }
+        ,
+        {
+            "category": "E2E_Select",
+            "description": "Selects COUNT(*) with single filter",
+            "runAllCommand": "run_e2e_selects_count_with_single_filter"
+        }
+        ,
+        {
+            "category": "E2E_Select",
+            "description": "Selects COUNT(*) with multiple filters",
+            "runAllCommand": "run_e2e_selects_count_with_multiple_filters"
+        }
+        ,
+        {
+            "category": "E2E_Select",
+            "description": "Selects COUNT(*) with joins",
+            "runAllCommand": "run_e2e_selects_count_with_joins"
+        }
+        ,
+        {
+            "category": "E2E_Select",
+            "description": "Selects COUNT(*) with joins and single filter",
+            "runAllCommand": "run_e2e_selects_count_with_joins_and_single_filter"
+        }
+        ,
+        {
+            "category": "E2E_Select",
+            "description": "Selects COUNT(*) with joins and multiple filters",
+            "runAllCommand": "run_e2e_selects_count_with_joins_and_multiple_filters"
+        },
+        {
+            "category": "E2E_Select",
+            "description": "Selects with field list ",
+            "runAllCommand": "run_e2e_selects_with_field_list"
+        },
+        {
+            "category": "E2E_Select",
+            "description": "Selects with field list and single filter",
+            "runAllCommand": "run_e2e_selects_with_field_list_and_single_filter"
+        },
+        {
+            "category": "E2E_Select",
+            "description": "Selects with field list and multiple filters",
+            "runAllCommand": "run_e2e_selects_with_field_list_and_multiple_filters"
+        },
+        {
+            "category": "E2E_Select",
+            "description": "Selects with field list with joins and single filter",
+            "runAllCommand": "run_e2e_selects_with_field_list_with_joins_and_single_filter"
+        },
+        {
+            "category": "E2E_Select",
+            "description": "Selects with field list with joins and multiple filters",
+            "runAllCommand": "run_e2e_selects_with_field_list_with_joins_and_multiple_filters"
+        },
+         {
+            "category": "E2E_Select",
+            "description": "Selects with field list and single NULL filter",
+            "runAllCommand": "run_e2e_selects_with_field_list_and_single_null_filter"
+        },
+        {
+            "category": "E2E_Select",
+            "description": "Selects with field list and multiple NULL filters",
+            "runAllCommand": "run_e2e_selects_with_field_list_and_multiple_null_filters"
+        },
+         {
+            "category": "E2E_Select",
+            "description": "Selects with joins and single null filter",
+            "runAllCommand": "run_e2e_selects_with_field_list_with_joins_and_single_null_filter"
+        },
+        {
+            "category": "E2E_Select",
+            "description": "Selects with joins and multiple null filters",
+            "runAllCommand": "run_e2e_selects_with_field_list_with_joins_and_multiple_null_filters"
+        },
+         {
+            "category": "E2E_Select",
+            "description": "Selects with field list and single CONTAINS filter",
+            "runAllCommand": "run_e2e_selects_with_field_list_and_single_contains_filter"
+        },
+        {
+            "category": "E2E_Select",
+            "description": "Selects with field list and multiple CONTAINS filters",
+            "runAllCommand": "run_e2e_selects_with_field_list_and_multiple_contains_filters"
+        },  
+        {
+            "category": "E2E_Select",
+            "description": "Selects with joins and single CONTAINS filter",
+            "runAllCommand": "run_e2e_selects_with_field_list_with_joins_and_single_contains_filter"
+        },
+        {
+            "category": "E2E_Select",
+            "description": "Selects with joins and multiple CONTAINS filters",
+            "runAllCommand": "run_e2e_selects_with_field_list_with_joins_and_multiple_contains_filters"
+        }
+        
+    ]
+}

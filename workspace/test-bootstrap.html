@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Test</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' data:;">
+</head>
+<body class="bg-dark text-light p-4">
+    <h1>Bootstrap JavaScript Test</h1>
+    
+    <!-- Test Dropdown -->
+    <div class="dropdown mb-3">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Test Dropdown
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action 1</a></li>
+            <li><a class="dropdown-item" href="#">Action 2</a></li>
+        </ul>
+    </div>
+    
+    <!-- Test Collapse -->
+    <div class="mb-3">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Test Collapse
+        </button>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body mt-2">
+                This is a collapsible content area!
+            </div>
+        </div>
+    </div>
+    
+    <!-- Test Modal -->
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Test Modal
+    </button>
+    
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Test Modal</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Bootstrap JavaScript is working!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Test if Bootstrap JS is loaded
+        console.log('Bootstrap object:', typeof bootstrap !== 'undefined' ? bootstrap : 'not found');
+        
+        // Test dropdown programmatically
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownElement = document.querySelector('.dropdown-toggle');
+            if (dropdownElement && typeof bootstrap !== 'undefined') {
+                console.log('Bootstrap dropdown available');
+                const dropdown = new bootstrap.Dropdown(dropdownElement);
+                console.log('Dropdown instance created:', dropdown);
+            } else {
+                console.log('Bootstrap dropdown not available');
+            }
+        });
+    </script>
+</body>
+</html>

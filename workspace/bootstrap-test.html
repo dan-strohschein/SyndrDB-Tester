@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap JavaScript Test</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' data:;">
+</head>
+<body class="bg-dark text-light p-4">
+    <div class="container">
+        <h1 class="mb-4">Bootstrap JavaScript Test</h1>
+        
+        <!-- Test Dropdown -->
+        <div class="dropdown mb-3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Test Dropdown
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action 1</a></li>
+                <li><a class="dropdown-item" href="#">Action 2</a></li>
+                <li><a class="dropdown-item" href="#">Action 3</a></li>
+            </ul>
+        </div>
+        
+        <!-- Test Collapse -->
+        <div class="mb-3">
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Test Collapse
+            </button>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body mt-2">
+                    This is a collapsible content area! Bootstrap JavaScript is working correctly.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test Modal -->
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Test Modal
+        </button>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Test Modal</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Bootstrap JavaScript is working correctly! All interactive components are functional.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test Accordion -->
+        <div class="accordion mt-4" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Accordion Item #1
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        This is the first item's accordion body.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Accordion Item #2
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        This is the second item's accordion body.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-4">
+            <h3>Console Log</h3>
+            <div id="console-output" class="bg-secondary p-3 rounded" style="font-family: monospace; white-space: pre-wrap;">
+                Loading...
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JavaScript -->
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        const consoleOutput = document.getElementById('console-output');
+        
+        function logToPage(message) {
+            consoleOutput.textContent += message + '\n';
+            console.log(message);
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            consoleOutput.textContent = '';
+            
+            // Test if Bootstrap is loaded
+            logToPage('Testing Bootstrap JavaScript...');
+            logToPage('Bootstrap object: ' + (typeof bootstrap !== 'undefined' ? 'Available' : 'NOT FOUND'));
+            
+            if (typeof bootstrap !== 'undefined') {
+                logToPage('Bootstrap version: ' + (bootstrap.Tooltip ? 'Available' : 'Unknown'));
+                
+                // Test dropdown initialization
+                const dropdownElement = document.querySelector('.dropdown-toggle');
+                if (dropdownElement) {
+                    try {
+                        const dropdown = new bootstrap.Dropdown(dropdownElement);
+                        logToPage('✓ Dropdown initialized successfully');
+                    } catch (error) {
+                        logToPage('✗ Error initializing dropdown: ' + error.message);
+                    }
+                }
+                
+                // Test collapse initialization
+                const collapseElement = document.querySelector('[data-bs-toggle="collapse"]');
+                if (collapseElement) {
+                    try {
+                        const collapse = new bootstrap.Collapse(document.querySelector('#collapseExample'), {
+                            toggle: false
+                        });
+                        logToPage('✓ Collapse initialized successfully');
+                    } catch (error) {
+                        logToPage('✗ Error initializing collapse: ' + error.message);
+                    }
+                }
+                
+                // Test modal initialization
+                const modalElement = document.querySelector('#exampleModal');
+                if (modalElement) {
+                    try {
+                        const modal = new bootstrap.Modal(modalElement);
+                        logToPage('✓ Modal initialized successfully');
+                    } catch (error) {
+                        logToPage('✗ Error initializing modal: ' + error.message);
+                    }
+                }
+                
+            } else {
+                logToPage('✗ Bootstrap JavaScript is not loaded');
+            }
+        });
+    </script>
+</body>
+</html>

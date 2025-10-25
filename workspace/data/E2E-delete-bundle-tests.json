@@ -1,0 +1,14 @@
+{
+    "tests": [
+        {
+            "category": "E2E_Delete_Bundles",
+            "description": "Simple Delete BUNDLE query",
+            "runAllCommand": "run_e2e_simple_Delete_bundles"
+        },
+        {
+            "category": "E2E_Delete_Bundles",
+            "description": "Simple Delete BUNDLE with invalid bundle name",
+            "runAllCommand": "run_e2e_simple_Delete_bundles_with_invalid_bundle_name"
+        }
+    ]
+}
