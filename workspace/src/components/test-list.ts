@@ -46,6 +46,7 @@ export class TestList extends LitElement {
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
         <span class="accordion-title">End 2 End</span>
         <a class="btn btn-sm btn-primary run-all-btn"><i class="fas fa-play"></i> Run All</a>
+       
       </button>
     </h2>
     <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">

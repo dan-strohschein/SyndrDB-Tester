@@ -7,6 +7,10 @@ import './components/side-bar';
 import './components/test-list';
 import './components/end-to-end-list';
 import './components/CLI-container';
+import './components/main-layout';
+import './components/cli-result';
+import './components/cli-summary';
+
 
 console.log('SyndrDB Tester renderer process loaded');
 

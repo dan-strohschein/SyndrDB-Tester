@@ -1,24 +1,41 @@
 import { SyndrDBDriver } from "../drivers/syndrdb-driver";
+import { SyndrDBDriverManager } from "../drivers/syndrdb-driver-manager";
+import { TestResult } from "./test-types";
 
-export interface TestResult {
-    testName: string;
-    success: boolean;
-    responseMessage: string;
-    errorMessage?: string;
-    executionTimeMs: number;
-}
+
 
 export class EndToEndTestRunner{
 
     isTestDBSetup: boolean = false;
-    syndrDBDriver: SyndrDBDriver = new SyndrDBDriver();
+   
+    testContainer: End2EndTests;
+    constructor(tests: End2EndTests) { 
+
+        this.testContainer = tests;
+    }
 
     public runAllTests() {
         // Code to run all end-to-end tests
     }  
 
-    public runTestByName(testName: string) {
-        // Code to run a specific test by its name
+    public async runTestByName(testName: string) : Promise<TestResult> {
+      // Check to see if the test database is setup
+      await this.IsTestDBSetup();
+      
+      const testMethod = Reflect.get(this.testContainer, testName);
+      if (typeof testMethod === 'function') {
+        const result = await testMethod.call(this.testContainer); // Preserve 'this' context
+        
+        // Check if the method returned a valid TestResult
+        if (!result || typeof result !== 'object' || !('testName' in result)) {
+          throw new Error(`Test method '${testName}' did not return a valid TestResult (method may be unimplemented)`);
+        }
+        
+        return result;
+      } else {
+        throw new Error(`Test method '${testName}' not found or is not a function`);
+      }
+      //return await this.testContainer[testName]()
     }
 
     public listAllTests(): string[] {
@@ -26,8 +43,10 @@ export class EndToEndTestRunner{
         return [];
     }
 
-    public setupBasicEnvironment() {
+    public async setupBasicEnvironment() {
         // Code to setup a basic environment for tests
+        await this.testContainer.UseTestDBDatabase();
+
         this.isTestDBSetup = true;
     }
 
@@ -36,44 +55,64 @@ export class EndToEndTestRunner{
 
     }
 
-    public IsTestDBSetup(): boolean { 
+    public async IsTestDBSetup(): Promise<boolean> { 
         // Code to check if the test database is set up
-        if (!this.isTestDBSetup) {
-            this.syndrDBDriver.connect();
-            this.syndrDBDriver.
-            this.setupBasicEnvironment();
+        if (this.isTestDBSetup == false) {
+           
+            await this.setupBasicEnvironment();
         }
         return this.isTestDBSetup; 
     }
 
-    public IsActualExpectedMatch(actual: any, expected: any): boolean {
-
-      return actual === expected;
-    }
+   
 
 
   }
 
 export class End2EndTests {
     
+    syndrDBDriver: SyndrDBDriver;
+    
+    constructor() {
+       this.syndrDBDriver = SyndrDBDriverManager.getInstance().getDriver();
+    }
 
-    private runner: EndToEndTestRunner;
-    constructor(runner: EndToEndTestRunner) {
-      this.runner = runner;
+     public IsActualExpectedMatch(actual: any, expected: any): boolean {
+
+      return actual === expected;
+    }
+
+
+    public async UseTestDBDatabase() {
+      //Build the SQL Statement
+      const sqlStatement = `USE "testdb";`
+      
+      // Execute the SQL Statement against the test database
+       const res = await this.syndrDBDriver.executeQuery(sqlStatement);
+      const testResultEval = this.IsActualExpectedMatch(1, 1);
+
+      console.log('UseTestDBDatabase result:', res);
+
+      const result: TestResult = {  
+        testName: "Setup Test DB Database",
+        success: testResultEval,
+        responseMessage: res.data ? res.data.toString() : "Switched to testdb database",
+        executionTimeMs: 0
+      }
+
+      return result;
     }
 
     // "description"::"Simple ADD queries",
     public run_e2e_simple_adds(testConfig?: any) {
-      // Check to see if the test database is setup
-      this.runner.IsTestDBSetup()
+     
 
       //Build the SQL Statement
       const sqlStatement = `ADD DOCUMENT TO BUNDLE "Authors" WITH  ( {"SomeField"="Bob Ross"}, {"Age" = 25},{"Salary" = 10000}, {"Country" = "USA"});`
       
       // Execute the SQL Statement against the test database
-      this.runner.syndrDBDriver.executeSQL(sqlStatement);
-
-      const testResultEval = this.runner.IsActualExpectedMatch(1, 1);
+       this.syndrDBDriver.executeQuery(sqlStatement);
+      const testResultEval = this.IsActualExpectedMatch(1, 1);
 
       const result: TestResult = {  
         testName: testConfig.name,
@@ -201,43 +240,331 @@ export class End2EndTests {
 
        
     // "description"::"Simple SELECT queries",
-    public run_e2e_simple_selects() { }
+    public async run_e2e_simple_selects(testConfig?: any)  :Promise<TestResult> {
+      //Build the SQL Statement
+      const sqlStatement = `SELECT DOCUMENTS FROM "Authors";`
+      
+      // Execute the SQL Statement against the test database
+      const queryResult =  await this.syndrDBDriver.executeQuery(sqlStatement);
+
+      const testResultEval = this.IsActualExpectedMatch(queryResult["success"], true);
+
+      // Extract execution time from the nested structure
+      const executionTimeMs = queryResult.data?.[0]?.ExecutionTimeMS || 0;
+      const resultCount = queryResult.data?.[0]?.ResultCount || 0;
+
+      const result: TestResult = {  
+        testName: "Simple Select from Authors",
+        success: testResultEval,
+        responseMessage: queryResult.data ? `Query executed successfully. Result Count: ${resultCount}` : "No data returned",
+        executionTimeMs: executionTimeMs
+      }
+
+      return result;
+     }
 
     // "description"::"Simple SELECT queries with single filters",
-    public run_e2e_simple_selects_with_single_filters() { }
+    public async run_e2e_simple_selects_with_single_filters() { 
+
+      const sqlStatement = `SELECT DOCUMENTS FROM "Authors" WHERE "AuthorName" == "Test Tester";`
+      
+      // Execute the SQL Statement against the test database
+      const queryResult =  await this.syndrDBDriver.executeQuery(sqlStatement);
+
+      const testResultEval = this.IsActualExpectedMatch(queryResult["success"], true);
+      //const testResultEvalCount = this.IsActualExpectedMatch(queryResult.data?.[0]?.ResultCount, 5);
+
+      // Extract execution time from the nested structure
+      const executionTimeMs = queryResult.data?.[0]?.ExecutionTimeMS || 0;
+      const resultCount = queryResult.data?.[0]?.ResultCount || 0;
+
+      const result: TestResult = {  
+        testName: "Simple Select Single Filter",
+        success: (testResultEval),
+        responseMessage: queryResult.data ? `Query executed successfully. Result Count: ${resultCount}` : "No data returned",
+        executionTimeMs: executionTimeMs
+      }
+
+      return result;
+
+    }
 
     // "description"::"Simple SELECT queries with multiple filters",
-    public run_e2e_simple_selects_with_multiple_filters() { }
+    public async run_e2e_simple_selects_with_multiple_filters() {
+      const sqlStatement = `SELECT DOCUMENTS FROM "Authors" WHERE "AuthorName" == "Test Tester" AND "Age" > 9 AND "Age" < 16;`
+      
+      // Execute the SQL Statement against the test database
+      const queryResult =  await this.syndrDBDriver.executeQuery(sqlStatement);
+
+      const testResultEval = this.IsActualExpectedMatch(queryResult["success"], true);
+      //const testResultEvalCount = this.IsActualExpectedMatch(queryResult.data?.[0]?.ResultCount, 5);
+
+      // Extract execution time from the nested structure
+      const executionTimeMs = queryResult.data?.[0]?.ExecutionTimeMS || 0;
+      const resultCount = queryResult.data?.[0]?.ResultCount || 0;
+
+      const result: TestResult = {  
+        testName: "Simple Select Multiple Filters",
+        success: (testResultEval),
+        responseMessage: queryResult.data ? `Query executed successfully. Result Count: ${resultCount}` : "No data returned",
+        executionTimeMs: executionTimeMs
+      }
+
+      return result;
+     }
 
     // "description"::"Simple Selects with Joins",
-    public run_e2e_simple_selects_with_joins() { }
+    public async run_e2e_simple_selects_with_joins() { 
+
+      const sqlStatement = `SELECT DOCUMENTS FROM "Authors" JOIN "Books" ON "Authors"."DocumentID" == "Books"."AuthorsID";`
+      
+      // Execute the SQL Statement against the test database
+      const queryResult =  await this.syndrDBDriver.executeQuery(sqlStatement);
+
+      const testResultEval = this.IsActualExpectedMatch(queryResult["success"], true);
+     // const testResultEvalCount = this.IsActualExpectedMatch(queryResult.data?.[0]?.ResultCount, 5);
+
+      // Extract execution time from the nested structure
+      const executionTimeMs = queryResult.data?.[0]?.ExecutionTimeMS || 0;
+      const resultCount = queryResult.data?.[0]?.ResultCount || 0;
+
+      const result: TestResult = {  
+        testName: "Simple Select  With Joins",
+        success: (testResultEval),
+        responseMessage: queryResult.data ? `Query executed successfully. Result Count: ${resultCount}` : "No data returned",
+        executionTimeMs: executionTimeMs
+      }
+
+      return result;
+    }
 
     // "description"::"Selects with joins and single filters",
-    public run_e2e_selects_with_joins_and_single_filters() { }
+    public async run_e2e_selects_with_joins_and_single_filters() { 
+
+       const sqlStatement = `SELECT DOCUMENTS FROM "Authors" JOIN "Books" ON "Authors"."DocumentID" == "Books"."AuthorsID" WHERE "Authors"."AuthorName" == "Test Tester";`
+      
+      // Execute the SQL Statement against the test database
+      const queryResult =  await this.syndrDBDriver.executeQuery(sqlStatement);
+
+      const testResultEval = this.IsActualExpectedMatch(queryResult["success"], true);
+     // const testResultEvalCount = this.IsActualExpectedMatch(queryResult.data?.[0]?.ResultCount, 5);
+
+      // Extract execution time from the nested structure
+      const executionTimeMs = queryResult.data?.[0]?.ExecutionTimeMS || 0;
+      const resultCount = queryResult.data?.[0]?.ResultCount || 0;
+
+      const result: TestResult = {  
+        testName: "Simple Select  With Joins & Single Filters",
+        success: (testResultEval),
+        responseMessage: queryResult.data ? `Query executed successfully. Result Count: ${resultCount}` : "No data returned",
+        executionTimeMs: executionTimeMs
+      }
+
+      return result;
+    }
 
     // "description"::"Selects with joins and multiple filters",
-    public run_e2e_selects_with_joins_and_multiple_filters() { }
+    public async run_e2e_selects_with_joins_and_multiple_filters() {
+      const sqlStatement = `SELECT DOCUMENTS FROM "Authors" JOIN "Books" ON "Authors"."DocumentID" == "Books"."AuthorsID" WHERE "Authors"."AuthorName" == "Test Tester" AND "Authors"."Age" > 9 AND "Authors"."Age" < 16;`
+      
+      // Execute the SQL Statement against the test database
+      const queryResult =  await this.syndrDBDriver.executeQuery(sqlStatement);
+
+      const testResultEval = this.IsActualExpectedMatch(queryResult["success"], true);
+     // const testResultEvalCount = this.IsActualExpectedMatch(queryResult.data?.[0]?.ResultCount, 5);
+
+      // Extract execution time from the nested structure
+      const executionTimeMs = queryResult.data?.[0]?.ExecutionTimeMS || 0;
+      const resultCount = queryResult.data?.[0]?.ResultCount || 0;
+
+      const result: TestResult = {  
+        testName: "Simple Select  With Joins & multiple Filters",
+        success: (testResultEval),
+        responseMessage: queryResult.data ? `Query executed successfully. Result Count: ${resultCount}` : "No data returned",
+        executionTimeMs: executionTimeMs
+      }
+
+      return result;
+
+     }
 
     // "description"::"Select TOP N queries",
-    public run_e2e_select_top_n_queries() { }
+    public async run_e2e_select_top_n_queries() :Promise<TestResult>{ 
+ //Build the SQL Statement
+      const sqlStatement = `SELECT TOP 5 DOCUMENTS FROM "Authors";`
+      
+      // Execute the SQL Statement against the test database
+      const queryResult =  await this.syndrDBDriver.executeQuery(sqlStatement);
+
+      const testResultEval = this.IsActualExpectedMatch(queryResult["success"], true);
+      const testResultEvalCount = this.IsActualExpectedMatch(queryResult.data?.[0]?.ResultCount, 5);
+
+      // Extract execution time from the nested structure
+      const executionTimeMs = queryResult.data?.[0]?.ExecutionTimeMS || 0;
+      const resultCount = queryResult.data?.[0]?.ResultCount || 0;
+
+      const result: TestResult = {  
+        testName: "Simple Select TOP 5 from Authors",
+        success: (testResultEval && testResultEvalCount),
+        responseMessage: queryResult.data ? `Query executed successfully. Result Count: ${resultCount}` : "No data returned",
+        executionTimeMs: executionTimeMs
+      }
+
+      return result;
+
+    }
 
     // "description"::"Selects TOP N with joins ",
-    public run_e2e_selects_top_n_with_joins() { }
+    public async run_e2e_selects_top_n_with_joins()  :Promise<TestResult>{ 
+
+      const sqlStatement = `SELECT TOP 5 DOCUMENTS FROM "Authors" JOIN "Books" ON "Authors"."DocumentID" == "Books"."AuthorsID";`
+      
+      // Execute the SQL Statement against the test database
+      const queryResult =  await this.syndrDBDriver.executeQuery(sqlStatement);
+
+      const testResultEval = this.IsActualExpectedMatch(queryResult["success"], true);
+      const testResultEvalCount = this.IsActualExpectedMatch(queryResult.data?.[0]?.ResultCount, 5);
+
+      // Extract execution time from the nested structure
+      const executionTimeMs = queryResult.data?.[0]?.ExecutionTimeMS || 0;
+      const resultCount = queryResult.data?.[0]?.ResultCount || 0;
+
+      const result: TestResult = {  
+        testName: "Simple Select TOP 5 With Joins",
+        success: (testResultEval && testResultEvalCount),
+        responseMessage: queryResult.data ? `Query executed successfully. Result Count: ${resultCount}` : "No data returned",
+        executionTimeMs: executionTimeMs
+      }
+
+      return result;
+    }
 
     // "description"::"Selects TOP N with joins and single filters",
-    public run_e2e_selects_top_n_with_joins_and_single_filters() { }
+    public async run_e2e_selects_top_n_with_joins_and_single_filters() :Promise<TestResult> { 
+
+      const sqlStatement = `SELECT TOP 2 DOCUMENTS FROM "Authors" JOIN "Books" ON "Authors"."DocumentID" == "Books"."AuthorsID" WHERE "Authors"."AuthorName" == "Test Tester";`
+      
+      // Execute the SQL Statement against the test database
+      const queryResult =  await this.syndrDBDriver.executeQuery(sqlStatement);
+
+      const testResultEval = this.IsActualExpectedMatch(queryResult["success"], true);
+      const testResultEvalCount = this.IsActualExpectedMatch(queryResult.data?.[0]?.ResultCount, 2);
+
+      // Extract execution time from the nested structure
+      const executionTimeMs = queryResult.data?.[0]?.ExecutionTimeMS || 0;
+      const resultCount = queryResult.data?.[0]?.ResultCount || 0;
+
+      const result: TestResult = {  
+        testName: "Simple Select TOP 2 With Joins & Single Filter",
+        success: (testResultEval && testResultEvalCount),
+        responseMessage: queryResult.data ? `Query executed successfully. Result Count: ${resultCount}` : "No data returned",
+        executionTimeMs: executionTimeMs
+      }
+
+      return result;
+    }
 
     // "description"::"Selects TOP N with joins and multiple filters",
-    public run_e2e_selects_top_n_with_joins_and_multiple_filters() { }
+    public async run_e2e_selects_top_n_with_joins_and_multiple_filters()  :Promise<TestResult>{ 
+      const sqlStatement = `SELECT TOP 2 DOCUMENTS FROM "Authors" JOIN "Books" ON "Authors"."DocumentID" == "Books"."AuthorsID" WHERE "Authors"."AuthorName" == "Test Tester" AND "Authors"."Country" == "USA";`
+      
+      // Execute the SQL Statement against the test database
+      const queryResult =  await this.syndrDBDriver.executeQuery(sqlStatement);
+
+      const testResultEval = this.IsActualExpectedMatch(queryResult["success"], true);
+      const testResultEvalCount = this.IsActualExpectedMatch(queryResult.data?.[0]?.ResultCount, 2);
+
+      // Extract execution time from the nested structure
+      const executionTimeMs = queryResult.data?.[0]?.ExecutionTimeMS || 0;
+      const resultCount = queryResult.data?.[0]?.ResultCount || 0;
+
+      const result: TestResult = {  
+        testName: "Simple Select TOP 2 With Joins & Multiple Filters",
+        success: (testResultEval && testResultEvalCount),
+        responseMessage: queryResult.data ? `Query executed successfully. Result Count: ${resultCount}` : "No data returned",
+        executionTimeMs: executionTimeMs
+      }
+
+      return result
+    }
 
     // "description"::"Selects COUNT(*) ",
-    public run_e2e_selects_count() { }
+    public async run_e2e_selects_count()  :Promise<TestResult>{ 
+
+       const sqlStatement = `SELECT count(*) FROM "Authors";`
+      
+      // Execute the SQL Statement against the test database
+      const queryResult =  await this.syndrDBDriver.executeQuery(sqlStatement);
+
+      const testResultEval = this.IsActualExpectedMatch(queryResult["success"], true);
+      //const testResultEvalCount = this.IsActualExpectedMatch(queryResult.data?.[0]?.ResultCount, 5);
+
+      // Extract execution time from the nested structure
+      const executionTimeMs = queryResult.data?.[0]?.ExecutionTimeMS || 0;
+      const resultCount = queryResult.data?.[0]?.ResultCount || 0;
+
+      const result: TestResult = {  
+        testName: "Simple Select COUNT(*) from Authors",
+        success: (testResultEval),
+        responseMessage: queryResult.data ? `Query executed successfully. Result Count: ${resultCount}` : "No data returned",
+        executionTimeMs: executionTimeMs
+      }
+
+      return result;
+
+    }
 
     // "description"::"Selects COUNT(*) with single filter",
-    public run_e2e_selects_count_with_single_filter() { }
+    public async run_e2e_selects_count_with_single_filter()  :Promise<TestResult>{ 
+       const sqlStatement = `SELECT count(*) FROM "Authors" WHERE "Authors"."AuthorName" == "Test Tester";`
+      
+      // Execute the SQL Statement against the test database
+      const queryResult =  await this.syndrDBDriver.executeQuery(sqlStatement);
+      
+      const returnedCount = queryResult.data?.[0]?.Result?.Count || 0;
+
+      const testResultEval = this.IsActualExpectedMatch(queryResult["success"], true);
+      const testResultEvalCount = this.IsActualExpectedMatch(returnedCount, 5);
+
+      // Extract execution time from the nested structure
+      const executionTimeMs = queryResult.data?.[0]?.ExecutionTimeMS || 0;
+      const resultCount = queryResult.data?.[0]?.ResultCount || 0;
+
+      const result: TestResult = {  
+        testName: "Simple Select COUNT(*) With Single Filter",
+        success: (testResultEval && testResultEvalCount),
+        responseMessage: queryResult.data ? `Query executed successfully. Result Count: ${resultCount}` : "No data returned",
+        executionTimeMs: executionTimeMs
+      }
+
+      return result;
+    }
 
     // "description"::"Selects COUNT(*) with multiple filters",
-    public run_e2e_selects_count_with_multiple_filters() { }
+    public async run_e2e_selects_count_with_multiple_filters() :Promise<TestResult>{ 
+      const sqlStatement = `SELECT count(*) FROM "Authors" WHERE "Authors"."AuthorName" == "Test Tester" AND "Authors"."Country" == "USA";`
+      
+      // Execute the SQL Statement against the test database
+      const queryResult =  await this.syndrDBDriver.executeQuery(sqlStatement);
+      const returnedCount = queryResult.data?.[0]?.Result?.Count || 0;
+
+
+      const testResultEval = this.IsActualExpectedMatch(queryResult["success"], true);
+      const testResultEvalCount = this.IsActualExpectedMatch(returnedCount, 3);
+
+      // Extract execution time from the nested structure
+      const executionTimeMs = queryResult.data?.[0]?.ExecutionTimeMS || 0;
+      const resultCount = queryResult.data?.[0]?.ResultCount || 0;
+
+      const result: TestResult = {  
+        testName: "Simple Select COUNT(*) With Multiple Filters",
+        success: (testResultEval && testResultEvalCount),
+        responseMessage: queryResult.data ? `Query executed successfully. Result Count: ${resultCount}` : "No data returned",
+        executionTimeMs: executionTimeMs
+      }
+
+      return result;
+    }
 
     // "description"::"Selects COUNT(*) with joins",
     public run_e2e_selects_count_with_joins() { }

@@ -5,6 +5,7 @@ import { customElement, state } from "lit/decorators.js"
 export class MainNavigation extends LitElement {
     @state() private showModal = false;
     @state() private modalMessage = '';
+    @state() private serverConnected = false; // Connection status
 
     // Use Light DOM instead of Shadow DOM for Bootstrap compatibility
     createRenderRoot() {
@@ -110,6 +111,45 @@ export class MainNavigation extends LitElement {
             .close-btn:hover {
                 background: #5a6268;
             }
+            
+            /* Connection Status Indicator */
+            .connection-status {
+                margin-left: auto;
+                display: flex;
+                align-items: center;
+                font-size: 0.875rem;
+                font-weight: 500;
+                padding: 0.25rem 0.75rem;
+                border-radius: 1rem;
+                transition: all 0.2s ease-in-out;
+            }
+            
+            .connection-status.connected {
+                color: #ffffff;
+                background-color: #198754;
+                border: 1px solid #146c43;
+            }
+            
+            .connection-status.disconnected {
+                color: #ffffff;
+                background-color: #dc3545;
+                border: 1px solid #b02a37;
+            }
+            
+            .connection-status i {
+                margin-right: 0.5rem;
+                animation: pulse 2s infinite;
+            }
+            
+            .connection-status.connected i {
+                animation: none;
+            }
+            
+            @keyframes pulse {
+                0% { opacity: 1; }
+                50% { opacity: 0.5; }
+                100% { opacity: 1; }
+            }
         `
     ];
 
@@ -118,6 +158,45 @@ export class MainNavigation extends LitElement {
         const styleSheet = new CSSStyleSheet();
         styleSheet.replaceSync(MainNavigation.styles[0].cssText);
         document.adoptedStyleSheets = [...document.adoptedStyleSheets, styleSheet];
+        
+        // Simulate connection status changes for demo
+        this.simulateConnectionChanges();
+    }
+
+    private simulateConnectionChanges() {
+        // Start as disconnected
+        this.serverConnected = false;
+        
+        // Remove simulation - let parent component handle real connections
+        // Real connection status will be updated via updateConnectionStatus() method
+    }
+
+    private toggleConnection() {
+        // Emit event to parent component to handle actual connection logic
+        if (this.serverConnected) {
+            // Request disconnection
+            this.dispatchEvent(new CustomEvent('disconnect-server', {
+                bubbles: true,
+                detail: { action: 'disconnect' }
+            }));
+        } else {
+            // Request connection
+            this.dispatchEvent(new CustomEvent('connect-server', {
+                bubbles: true,
+                detail: { action: 'connect' }
+            }));
+        }
+    }
+
+    // Method to update connection status from parent component
+    public updateConnectionStatus(connected: boolean) {
+        this.serverConnected = connected;
+        
+        if (connected) {
+            this.modalMessage = 'Successfully connected to SyndrDB server.';
+        } else {
+            this.modalMessage = 'Disconnected from SyndrDB server.';
+        }
     }
 
     private showActionModal(action: string): void {
@@ -148,7 +227,7 @@ export class MainNavigation extends LitElement {
                     </a>
 
                     <!-- Navigation Items -->
-                    <div class="navbar-nav d-flex flex-row">
+                    <div class="navbar-nav d-flex flex-row align-items-center w-100">
                         <!-- File Menu -->
                         <div class="nav-item dropdown me-3">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -197,6 +276,15 @@ export class MainNavigation extends LitElement {
                                     </a>
                                 </li>
                             </ul>
+                        </div>
+                        
+                        <!-- Connection Status Indicator -->
+                        <div class="connection-status ${this.serverConnected ? 'connected' : 'disconnected'}" 
+                             @click=${this.toggleConnection}
+                             style="cursor: pointer;"
+                             title="Click to toggle connection (demo)">
+                            <i class="fas ${this.serverConnected ? 'fa-link' : 'fa-unlink'}"></i>
+                            ${this.serverConnected ? 'Connected!' : 'Disconnected'}
                         </div>
                     </div>
                 </div>

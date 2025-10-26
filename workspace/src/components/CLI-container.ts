@@ -1,5 +1,6 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property, state } from "lit/decorators.js"
+import { TestResult, TestSummary } from "../test_engine/test-types";
 
 @customElement("cli-container")
 export class CLIContainer extends LitElement {
@@ -29,6 +30,26 @@ export class CLIContainer extends LitElement {
         `
     ];
 
+
+   @property() TestResults: TestResult[] = [];
+   @property() summaryCategory: string = "End-to-End Tests";
+
+   private calculateSummary(): TestSummary {
+       // Filter out null/undefined results first
+       const validResults = this.TestResults.filter(result => result != null);
+       const totalTests = validResults.length;
+       const totalPassed = validResults.filter(result => result.success).length;
+       const totalFailed = totalTests - totalPassed;
+       
+       return {
+           category: this.summaryCategory,
+           totalTests,
+           totalPassed,
+           totalFailed
+       };
+   }
+
+
     createRenderRoot() {
         return this;
     }
@@ -46,7 +67,19 @@ export class CLIContainer extends LitElement {
             <div>SyndrDB Tester CLI v1.0.0</div>
             <div>Seleect tests on the left to execute</div>
             <div><span style="color: #00ff00;">syndrdb@localhost:~$</span> <span style="color: #ffff00;">|</span></div>
-        </div>
+            ${this.TestResults.filter(result => result != null).map(result => html`
+                <cli-result 
+                    .testName=${result.testName} 
+                    .success=${result.success} 
+                    .responseMessage=${result.responseMessage} 
+                    .executionTimeMs=${result.executionTimeMs}>
+                </cli-result>
+            `)}
+            
+            ${this.TestResults.filter(result => result != null).length > 0 ? html`
+                <cli-summary .TestSummary=${this.calculateSummary()}></cli-summary>
+            ` : ''}
+            </div>
         `;
     }
 }
